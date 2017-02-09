@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head />
+<body>
+	<h1>Pagina ABC de cat&aacute;logos</h1>
+	<h:form>
+		<p:growl autoUpdate="true" />
+		<p:panel header="Datatable">
+			<p:dataTable value="#{catalogoCtrl.listElements}" id="table"
+				var="cata">
+				<!-- Columna 1: Desc Corta -->
+				<p:column headerText="Desc. Corta" filterMatchMode="contains"
+					filterBy="#{cata.dscCorCat}" sortBy="#{cata.dscCorCat}">
+					<h:outputText value="#{cata.dscCorCat}" />
+				</p:column>
+				<!-- Columna 2: Desc completa -->
+				<p:column headerText="Desc. completa" filterMatchMode="contains"
+					filterBy="#{cata.dscComCat}" sortBy="#{cata.dscComCat}">
+					<h:outputText value="#{cata.dscComCat}" />
+				</p:column>
+				<!-- Columna 3: Fch creacion -->
+				<p:column headerText="Fecha creacion">
+					<h:outputText value="#{cata.fchCre}" />
+				</p:column>
+				<!-- Columna 4: Estatus -->
+				<p:column headerText="Estatus">
+					<h:outputText value="#{cata.idEstCat}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+
+			<h:panelGrid columns="3">
+				<p:outputLabel value="Descripcion corta" for="input_dsc_cort" />
+				<p:inputText required="true" value="#{catalogoCtrl.descCorta}"
+					id="input_dsc_cort" />
+				<p:message for="input_dsc_cort" />
+				<p:outputLabel value="Descripcion completa" for="input_desc_comp" />
+				<p:inputText id="input_desc_comp" value="#{catalogoCtrl.descComp}" />
+				<p:message for="input_desc_comp" />
+				<p:outputLabel value="Fecha creacion" for="input_fch_crea" />
+				<p:calendar id="input_fch_crea" navigator="true"
+					value="#{catalogoCtrl.fchCrea}" />
+				<p:message for="input_fch_crea" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Guardar" action="#{catalogoCtrl.save}"
+					update="table" />
+				<p:commandButton value="Cancelar" />
+			</h:panelGrid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</p:panel>
+	</h:form>
+</body>
+</html>
